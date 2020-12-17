@@ -38,6 +38,7 @@
                     <div class="lg:w-1/6 rounded-lg p-4">
                         <div class="bg-blue-100  rounded-lg p-4">
                             @include('_friends')
+                            @include('_users')
                         </div>
                     </div>
 

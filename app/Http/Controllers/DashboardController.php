@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index(){
         return view('dashboard', [
-            'tweets' => auth()->user()->timeline(),
+            'tweets' => current_user()->timeline(),
         ]);
     }
 }

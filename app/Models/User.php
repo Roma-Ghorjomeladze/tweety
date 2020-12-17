@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'avatar',
     ];
 
     /**
@@ -45,11 +47,29 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
 
-    public function timeline(){
-        return Tweet::where('user_id', $this->id)->latest()->get();
+    public function ownTwits(User $user){
+        return Tweet::where('user_id', $user->id)->latest()->get();
     }
 
-    public function avatar(){
-        return "https://i.pravatar.cc/40?" . $this->email;
+    public function timeline(){
+        $friends = $this->follows()->pluck('id');
+        return Tweet::whereIn('user_id', $friends)->orWhere('user_id', current_user()->id)->latest()->get();
+    }
+
+    public function getAvatarAttribute($value): string
+    {
+        ddd(asset($value));
+        return asset($value);
+    }
+
+    public function suggestions(User $user){
+        $friends = $this->follows()->pluck('id');
+        return User::whereNotIn('id', $friends)->where('id', '<>', current_user()->id)->get();
+    }
+
+    public function path($append = ''): string
+    {
+        $path = route('profile', $this->username);
+        return $append ? "{$path}/$append" : $path;
     }
 }

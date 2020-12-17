@@ -11,13 +11,21 @@
                 <span>{{$user->created_at->diffForHumans()}}</span>
             </div>
             <img class="mr-2" style="width: 150px; border-radius: 100%"
-                 src="https://i.kym-cdn.com/photos/images/newsfeed/001/053/259/ebd.jpg" alt="profile">
+                 src="{{$user->avatar}}" alt="profile">
 
-            <div>
-                <button class="bg-blue-500 rounded-lg shadow py-2 px-2 text-white text-xs">Follow me</button>
-                <button class="bg-white border border-gray-500 text-black rounded-lg shadow py-2 px-2 text-xs ">Edit
-                    Profile
-                </button>
+            <div class="flex">
+                @unless(current_user()->is($user))
+                    <form class="mr-3" method="POST" action="{{$user->path()}}/follow">
+                        @csrf
+                        <button type="submit" class="bg-blue-500 rounded-lg shadow py-2 px-2 text-white text-xs">{{current_user()->following($user) ? 'Unfollow Me' : 'Follow Me'}}</button>
+                    </form>
+                @endunless
+                @can('edit', $user)
+                    <a href="{{$user->path('edit')}}" class="bg-white border border-gray-500 text-black rounded-lg shadow py-2 px-2 text-xs ">Edit
+                        Profile
+                    </a>
+                @endcan
+
             </div>
         </div>
         <div style="text-align: center">
