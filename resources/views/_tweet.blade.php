@@ -1,6 +1,6 @@
 <div class="flex mb-5 border-b border-b-gray pb-5">
     <a href="{{$tweet->user->path()}}">
-        <img class="rounded-full mr-2" src="{{$tweet->user->avatar}}" alt="friend">
+        <img class="rounded-full mr-2" style="width: 50px; height: 50px;  object-fit: cover;" src="{{$tweet->user->avatar}}" alt="friend">
     </a>
     <div>
         <a href="{{$tweet->user->path()}}">

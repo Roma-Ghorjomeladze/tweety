@@ -21,11 +21,20 @@
             <main>
                 <header style="background: azure">
                     <div class="py-3" style="width: 90%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between">
-                        <span class="text-2xl font-bold" style="color: purple">Tweets</span>
-                        <form method="POST" action="{{route('logout')}}">
-                            @csrf
-                            <button type="submit">Log Out</button>
-                        </form>
+                        <a href="/tweets">
+                            <span class="text-2xl font-bold" style="color: purple">Tweets</span>
+                        </a>
+                        <div>
+                            <div>
+
+                                <form method="POST" action="{{route('logout')}}">
+                                    @csrf
+                                    <button type="submit">Log Out</button>
+                                </form>
+                            </div>
+
+                        </div>
+
                     </div>
                 </header>
                 <section class="global_wrapper justify-between">
@@ -38,7 +47,6 @@
                     <div class="lg:w-1/6 rounded-lg p-4">
                         <div class="bg-blue-100  rounded-lg p-4">
                             @include('_friends')
-                            @include('_users')
                         </div>
                     </div>
 

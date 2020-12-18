@@ -6,7 +6,7 @@
         <a href="{{current_user()->path()}}" class="font-bold text-lg md-4 block">Profile</a>
     </li>
     <li>
-        <a href="#" class="font-bold text-lg md-4 block">Notifications</a>
+        <a href="/explore" class="font-bold text-lg md-4 block">Explore</a>
     </li>
     <li>
         <a href="#" class="font-bold text-lg md-4 block">Messages</a>
@@ -18,7 +18,7 @@
         <a href="#" class="font-bold text-lg md-4 block">lists</a>
     </li>
     <li>
-        <a href="#" class="font-bold text-lg md-4 block">profile</a>
+        <a href="#" class="font-bold text-lg md-4 block">Notifications</a>
     </li>
     <li>
         <a href="#" class="font-bold text-lg md-4 block">More</a>

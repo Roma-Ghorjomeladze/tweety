@@ -58,8 +58,11 @@ class User extends Authenticatable
 
     public function getAvatarAttribute($value): string
     {
-        ddd(asset($value));
-        return asset($value);
+        $path = asset($value);
+        if($path == "http://127.0.0.1:8000/"){
+            $path = asset('/storage/avatars/default.png');
+        }
+       return $path;
     }
 
     public function suggestions(User $user){

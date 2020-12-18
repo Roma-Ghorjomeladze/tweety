@@ -4,13 +4,14 @@
     <div class="border border-gray-300 rounded-lg px-2">
         <img style="width: 100%; height: 200px"
              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSotgqABNQ6mdTL07zVFXq-JTuGQ1IDLXSNxg&usqp=CAU"
-             alt="">
+             alt="background">
         <div class="flex justify-between items-center" style="margin-top: -40px">
             <div>
                 <h2 class="font-bold">{{$user->name}}</h2>
                 <span>{{$user->created_at->diffForHumans()}}</span>
+                <p class="text-xs">{{$user->email}}</p>
             </div>
-            <img class="mr-2" style="width: 150px; border-radius: 100%"
+            <img class="mr-2" style="width: 150px; height: 150px;  object-fit: cover; border-radius: 100%"
                  src="{{$user->avatar}}" alt="profile">
 
             <div class="flex">

@@ -46,7 +46,10 @@
 
         <div class="mb-4">
             <label for="avatar" class="block mb-2 uppercase font-bold text-xs text-gray-700">Avatar</label>
-            <input class="w-full" name="avatar"  id="avatar" type="file">
+            <div class="flex items-center">
+                <input style="background: white; border: 1px solid black; border-right: none" class="w-full py-3" name="avatar"  id="avatar" type="file">
+                <img style="border: 1px solid black; border-left: none" src="{{$user->avatar}}" alt="avatar" width="40">
+            </div>
             @error('avatar')
             <p class="text-red-500 text-xs mt-2">{{$message}}</p>
             @enderror

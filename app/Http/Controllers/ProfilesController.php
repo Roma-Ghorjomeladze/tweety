@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {
@@ -27,7 +28,7 @@ class ProfilesController extends Controller
         ]);
         $attributes['password'] = Hash::make(request()->password);
         if(request('avatar')){
-            $attributes['avatar'] = request('avatar')->store('avatars');
+            $attributes['avatar'] = 'storage/'.request('avatar')->store('avatars');
         }
         $user->update($attributes);
         return redirect($user->path());
