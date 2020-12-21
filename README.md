@@ -16,7 +16,7 @@
 - start server with $ php artisan serve
 - start front with $ npm run dev
 - run migrations
-- you ready to tweet, create user and enjoy with the app
+- you are ready to tweet, create user and enjoy with the app
 
 
 ## About Laravel
