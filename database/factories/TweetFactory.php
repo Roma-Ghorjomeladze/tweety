@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Tweet;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 class TweetFactory extends Factory
 {
@@ -23,7 +24,7 @@ class TweetFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'body' => $this->faker->sentence,
+            'body' => $this->faker->paragraph,
             'created_at' => now(),
             'updated_at' => now(),
         ];

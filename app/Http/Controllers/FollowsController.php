@@ -10,7 +10,7 @@ class FollowsController extends Controller
 {
     public function store(User $user): RedirectResponse
     {
-        auth()->user()->toggleFollow($user);
+        current_user()->toggleFollow($user);
        return back();
     }
 }
