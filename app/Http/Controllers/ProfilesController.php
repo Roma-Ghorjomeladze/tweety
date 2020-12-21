@@ -24,11 +24,15 @@ class ProfilesController extends Controller
             'name' => 'required|max:255|string',
             'username' => "required|unique:users,username,{$user->id}|max:255|alpha_dash",
             'password' => 'string|min:3|max:255|confirmed',
-            'email'=>"string|email|required|max:255|unique:users,email,{$user->id}"
+            'email'=>"string|email|required|max:255|unique:users,email,{$user->id}",
+            'desc' => 'max:255|string',
         ]);
         $attributes['password'] = Hash::make(request()->password);
         if(request('avatar')){
             $attributes['avatar'] = 'storage/'.request('avatar')->store('avatars');
+        }
+        if(request('cover')){
+            $attributes['cover'] = 'storage/'.request('cover')->store('avatars');
         }
         $user->update($attributes);
         return redirect($user->path());

@@ -29,6 +29,19 @@
         </div>
 
         <div class="mb-4">
+            <label for="desc" class="block mb-2 uppercase font-bold text-xs text-gray-700">Description</label>
+            <textarea
+                name="desc"
+                id="desc"
+                class="w-full border-none"
+                placeholder="your description or bio"
+            ></textarea>
+            @error('desc')
+            <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+            @enderror
+        </div>
+
+        <div class="mb-4">
             <label for="password" class="block mb-2 uppercase font-bold text-xs text-gray-700">Password</label>
             <input class="w-full"  name="password"  id="password" required type="password">
             @error('password')
@@ -51,6 +64,16 @@
                 <img style="border: 1px solid black; border-left: none" src="{{$user->avatar}}" alt="avatar" width="40">
             </div>
             @error('avatar')
+            <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label for="cover" class="block mb-2 uppercase font-bold text-xs text-gray-700">Avatar</label>
+            <div class="flex items-center">
+                <input style="background: white; border: 1px solid black; border-right: none" class="w-full py-3" name="cover"  id="cover" type="file">
+                <img style="border: 1px solid black; border-left: none" src="{{$user->cover}}" alt="cover" width="40">
+            </div>
+            @error('cover')
             <p class="text-red-500 text-xs mt-2">{{$message}}</p>
             @enderror
         </div>

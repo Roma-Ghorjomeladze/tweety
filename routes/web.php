@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', [TweetController::class, 'index']);
     Route::post('/tweets', [TweetController::class, 'store']);
+    Route::delete('/tweet/{tweet:id}', [TweetController::class, 'delete'])->middleware('can:delete,tweet');
+    Route::post('tweet/{tweet:id}/like', [TweetController::class, 'toggleLike']);
+    Route::post('tweet/{tweet:id}/dislike', [TweetController::class, 'toggleDislike']);
     Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
     Route::post('/profiles/{user:username}/follow', [FollowsController::class, 'store']);
     Route::get('/profiles/{user:username}/edit', [ProfilesController::class, 'edit'])->middleware('can:edit,user');

@@ -31455,6 +31455,22 @@ select {
   color: white;
 }
 
+.delete-btn{
+  right: 0;
+  background: #c64141;
+  color: whitesmoke;
+  font-size: 12px;
+  font-weight: bold;
+  outline: none;
+  padding: 4px;
+  border-radius: 8px;
+  position: absolute;
+}
+
+.active_liked{
+  border-bottom: 4px solid green;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

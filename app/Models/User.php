@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,8 @@ class User extends Authenticatable
         'password',
         'username',
         'avatar',
+        'desc',
+        'cover',
     ];
 
     /**
@@ -47,22 +50,34 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
 
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
     public function ownTwits(User $user){
-        return Tweet::where('user_id', $user->id)->latest()->get();
+        return Tweet::where('user_id', $user->id)->withLikes()->latest()->get();
     }
 
     public function timeline(){
         $friends = $this->follows()->pluck('id');
-        return Tweet::whereIn('user_id', $friends)->orWhere('user_id', current_user()->id)->latest()->get();
+        return Tweet::whereIn('user_id', $friends)->orWhere('user_id', current_user()->id)->latest()->withLikes()->get();
     }
 
     public function getAvatarAttribute($value): string
     {
         $path = asset($value);
-        if($path == "http://127.0.0.1:8000/"){
+        if($path == "http://127.0.0.1:8000/" || $path=="http://localhost:8000/"){
             $path = asset('/storage/avatars/default.png');
         }
        return $path;
+    }
+
+    public function getCoverAttribute($value):string{
+        $path = asset($value);
+        if($path == "http://127.0.0.1:8000/" || $path=="http://localhost:8000/"){
+            $path = asset('/storage/avatars/default_cover.png');
+        }
+        return $path;
     }
 
     public function suggestions(User $user){
